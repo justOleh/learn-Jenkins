@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Echo Test') {
             steps {
-                echo 'Hello, Jenkins! The build is working!'
+                echo 'Hello, Jenkins! This is a test to check the pipeline execution.'
             }
         }
     }
