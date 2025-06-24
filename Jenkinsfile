@@ -2,19 +2,12 @@ pipeline {
     agent any
 
     environment {
-        ONLY_CONFIGURATION_CHANGED = false // Initialize the flag
-        FOLDER_PATH = 'config/'           // Specify the folder to monitor
-        COMMIT_FROM =             // Previous commit (you can adjust this)
-        COMMIT_TO =            // Latest commit
+        ONLY_CONFIGURATION_CHANGED = false
+        CONFIG_PATH = 'config/'
+        RESOURCE_PATH = 'resources/' 
     }
 
     stages {
-        stage('Echo Test') {
-            steps {
-                echo 'Hello, Jenkins! This is a test to check the pipeline execution.'
-            }
-        }
-
         stage('Check Configuration Changes') {
             steps {
                 script {
@@ -28,7 +21,7 @@ pipeline {
 
                     // Check if all changed files are within the specified folder
                     def onlyConfigurationChanged = changedFiles.every { file ->
-                        file.startsWith(env.FOLDER_PATH)
+                        file.startsWith(env.FOLDER_PATH) | | file.startsWith(env.RESOURCE_PATH)
                     }
 
                     // Update the environment variable
