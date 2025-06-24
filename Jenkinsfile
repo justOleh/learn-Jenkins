@@ -1,7 +1,7 @@
+def ONLY_CONFIGURATION_CHANGED = false
+
 pipeline {
     agent any
-
-ONLY_CONFIGURATION_CHANGED = false
 
     environment {
 
