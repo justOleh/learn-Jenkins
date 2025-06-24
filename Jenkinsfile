@@ -26,18 +26,15 @@ pipeline {
                     }
 
                     // // Update the environment variable
-                    env.ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
+                    currentBuild.onlyConfigurationChanged = onlyConfigurationChanged
 
-                    echo "local variable: ${onlyConfigurationChanged}"
-
-                    echo "Only configuration changed: ${env.ONLY_CONFIGURATION_CHANGED}"
                 }
             }
         }
         stage('Conditional Execution') {
             steps {
                 script {
-                    if (env.ONLY_CONFIGURATION_CHANGED.toBoolean()) {
+                    if (currentBuild.onlyConfigurationChanged) {
                         echo 'Changes were only in the configuration folder. Proceeding...'
                         // Add additional steps for configuration-only changes here.
                     } else {
