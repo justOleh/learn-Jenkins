@@ -19,10 +19,10 @@ pipeline {
 
                     echo "Changed files: ${changedFiles}"
 
-                    // // Check if all changed files are within the specified folder
-                    // def onlyConfigurationChanged = changedFiles.every { file ->
-                    //     file.startsWith(env.FOLDER_PATH)
-                    // }
+                    // Check if all changed files are within the specified folder
+                    def onlyConfigurationChanged = changedFiles.every { file ->
+                        file.startsWith(env.FOLDER_PATH)
+                    }
 
                     // // Update the environment variable
                     // env.ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
