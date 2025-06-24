@@ -25,26 +25,26 @@ pipeline {
                     }
 
                     // // Update the environment variable
-                    // env.ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
+                    env.ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
 
-                    // echo "Only configuration changed: ${env.ONLY_CONFIGURATION_CHANGED}"
+                    echo "Only configuration changed: ${env.ONLY_CONFIGURATION_CHANGED}"
                 }
             }
         }
     }
 
-    //     stage('Conditional Execution') {
-    //         steps {
-    //             script {
-    //                 if (env.ONLY_CONFIGURATION_CHANGED.toBoolean()) {
-    //                     echo 'Changes were only in the configuration folder. Proceeding...'
-    //                     // Add additional steps for configuration-only changes here.
-    //                 } else {
-    //                     echo 'Changes were outside the configuration folder. Skipping...'
-    //                     // Add steps for other types of changes here.
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+        stage('Conditional Execution') {
+            steps {
+                script {
+                    if (env.ONLY_CONFIGURATION_CHANGED.toBoolean()) {
+                        echo 'Changes were only in the configuration folder. Proceeding...'
+                        // Add additional steps for configuration-only changes here.
+                    } else {
+                        echo 'Changes were outside the configuration folder. Skipping...'
+                        // Add steps for other types of changes here.
+                    }
+                }
+            }
+        }
+    }
 }
