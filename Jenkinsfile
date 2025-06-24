@@ -26,6 +26,7 @@ pipeline {
                     }
 
                     // // Update the environment variable
+                    currentBuild.description = "Only Configuration Changed: ${onlyConfigurationChanged}"
                     currentBuild.onlyConfigurationChanged = onlyConfigurationChanged
 
                 }
