@@ -27,6 +27,7 @@ pipeline {
                     // // Update the environment variable
                     env.ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
 
+                    echo "local variable:" ${onlyConfigurationChanged}
                     echo "Only configuration changed: ${env.ONLY_CONFIGURATION_CHANGED}"
                 }
             }
