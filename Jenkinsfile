@@ -1,8 +1,10 @@
 pipeline {
     agent any
 
+ONLY_CONFIGURATION_CHANGED = false
+
     environment {
-        ONLY_CONFIGURATION_CHANGED = false
+
         CONFIG_PATH = 'config/'
         RESOURCE_PATH = 'resources/' 
     }
@@ -25,13 +27,15 @@ pipeline {
                         file.startsWith(env.CONFIG_PATH)
                     }
 
+                    ONLY_CONFIGURATION_CHANGED = onlyConfigurationChanged
+
                 }
             }
         }
         stage('Conditional Execution') {
             steps {
                 script {
-                    if (onlyConfigurationChanged) {
+                    if (ONLY_CONFIGURATION_CHANGED) {
                         echo 'Changes were only in the configuration folder. Proceeding...'
                         // Add additional steps for configuration-only changes here.
                     } else {
