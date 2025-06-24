@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Check Configuration Changes') {
+        stage('Check Only Configurations Changed') {
             steps {
                 script {
                     // Run git diff to get changed files
@@ -21,13 +21,9 @@ pipeline {
 
                     // || file.startsWith(env.RESOURCE_PATH)
                     // Check if all changed files are within the specified folder
-                    def onlyConfigurationChanged = changedFiles.every { file ->
+                    onlyConfigurationChanged = changedFiles.every { file ->
                         file.startsWith(env.CONFIG_PATH)
                     }
-
-                    // // Update the environment variable
-                    currentBuild.description = "Only Configuration Changed: ${onlyConfigurationChanged}"
-                    currentBuild.onlyConfigurationChanged = onlyConfigurationChanged
 
                 }
             }
@@ -35,7 +31,7 @@ pipeline {
         stage('Conditional Execution') {
             steps {
                 script {
-                    if (currentBuild.onlyConfigurationChanged) {
+                    if (onlyConfigurationChanged) {
                         echo 'Changes were only in the configuration folder. Proceeding...'
                         // Add additional steps for configuration-only changes here.
                     } else {
