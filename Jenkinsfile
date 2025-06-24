@@ -31,6 +31,7 @@ pipeline {
                 }
             }
         }
+    }
 
     //     stage('Conditional Execution') {
     //         steps {
