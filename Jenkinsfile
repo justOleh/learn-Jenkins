@@ -21,7 +21,7 @@ pipeline {
 
                     // || file.startsWith(env.RESOURCE_PATH)
                     // Check if all changed files are within the specified folder
-                    onlyConfigurationChanged = changedFiles.every { file ->
+                    def onlyConfigurationChanged = changedFiles.every { file ->
                         file.startsWith(env.CONFIG_PATH)
                     }
 
