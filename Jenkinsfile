@@ -4,8 +4,8 @@ pipeline {
     environment {
         ONLY_CONFIGURATION_CHANGED = false // Initialize the flag
         FOLDER_PATH = 'config/'           // Specify the folder to monitor
-        COMMIT_FROM = 'HEAD~1'            // Previous commit (you can adjust this)
-        COMMIT_TO = 'HEAD'                // Latest commit
+        COMMIT_FROM =             // Previous commit (you can adjust this)
+        COMMIT_TO =            // Latest commit
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     // Run git diff to get changed files
                     def changedFiles = sh(
-                        script: "git diff --name-only ${env.COMMIT_FROM} ${env.COMMIT_TO}",
+                        script: "git diff --name-only HEAD~1 HEAD",
                         returnStdout: true
                     ).trim().split("\n")
 
