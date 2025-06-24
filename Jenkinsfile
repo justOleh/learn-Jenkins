@@ -31,8 +31,6 @@ pipeline {
                 }
             }
         }
-    }
-
         stage('Conditional Execution') {
             steps {
                 script {
@@ -46,4 +44,7 @@ pipeline {
                 }
             }
         }
+    }
+
+        
 }
