@@ -57,6 +57,23 @@ pipeline {
             }
         }
 
+        stage('Conditional Execution pipeline update configuration') {
+            when {
+                expression {
+                    ONLY_CONFIGURATION_CHANGED
+                }
+            }
+            steps {
+                script {
+                    if (ONLY_CONFIGURATION_CHANGED) {
+                        echo 'ONLY_CONFIGURATION_CHANGED is true. Skipping earlier stages and proceeding with finalizing...'
+                    } else {
+                        echo 'Changes were outside the configuration folder. Proceeding with finalizing stage...'
+                    }
+                }
+            }
+        }
+
         stage('Conditional Execution pipeline finalizing') {
             steps {
                 script {
